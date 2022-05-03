@@ -1,0 +1,23 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.rating-item {
+  width: 40px;
+  aspect-ratio: 1/1;
+  color: $color-light-grey;
+  background-color: $color-grey;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 100%;
+  @include flex-center;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+
+  &:hover {
+    color: $color-white;
+    background-color: $color-orange;
+  }
+
+  &__selected {
+  }
+}

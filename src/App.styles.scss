@@ -1,0 +1,6 @@
+@import "./styles/mixins";
+
+.app {
+  @include flex-center;
+  height: 100vh;
+}

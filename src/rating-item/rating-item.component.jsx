@@ -1,11 +1,7 @@
 import "./rating-item.styles.scss";
 
-const RatingItem = () => {
-  return (
-    <div>
-      <h2>This is the rating item</h2>
-    </div>
-  );
+const RatingItem = ({ rate }) => {
+  return <span className="rating-item">{rate}</span>;
 };
 
 export default RatingItem;
