@@ -23,7 +23,7 @@ const Rating = () => {
       </div>
       <div className="rating-container__rates">
         {RATING_VALUES.map((rate) => (
-          <RatingItem key={rate} rate={rate} />
+          <RatingItem key={rate} rate={rate} active={false} />
         ))}
       </div>
       <button className="rating-container__submit">Submit</button>
