@@ -1,12 +1,28 @@
+import { useState } from "react";
 import RatingItem from "../rating-item/rating-item.component";
 
 import { ReactComponent as IconStar } from "../assets/icon-star.svg";
 
 import "./rating.styles.scss";
 
-const RATING_VALUES = [1, 2, 3, 4, 5];
+
+const initialRatingValues = [
+  {rate: 1, isSelected: false},
+  {rate: 2, isSelected: false},
+  {rate: 3, isSelected: false},
+  {rate: 4, isSelected: false},
+  {rate: 5, isSelected: false},
+]
 
 const Rating = () => {
+  const [ratingValues, setRatingValues] = useState(initialRatingValues)
+  
+  const onRatingValueClick = (rateNbrClicked) => {
+    setRatingValues((prevRatingValues) => 
+      prevRatingValues.map(ratingValue => ({...ratingValue, isSelected: ratingValue.rate === rateNbrClicked}))
+    )
+  }
+
   return (
     <div className="rating-container">
       <div className="rating-container__star-container">
@@ -22,8 +38,8 @@ const Rating = () => {
         </p>
       </div>
       <div className="rating-container__rates">
-        {RATING_VALUES.map((rate) => (
-          <RatingItem key={rate} rate={rate} active={false} />
+        {ratingValues?.map(({rate, isSelected}) => (
+          <RatingItem key={rate} rate={rate} isSelected={isSelected} onClick={onRatingValueClick} />
         ))}
       </div>
       <button className="rating-container__submit">Submit</button>
