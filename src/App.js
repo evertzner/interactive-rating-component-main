@@ -1,11 +1,11 @@
-import Rating from "./rating/rating.component";
+import Container from "./container/container.component";
 
 import "./App.styles.scss";
 
 const App = () => {
   return (
     <div className="app">
-      <Rating />
+      <Container />
       <footer className="attribution">
         Challenge by
         <a

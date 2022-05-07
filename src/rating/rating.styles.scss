@@ -50,9 +50,14 @@
     cursor: pointer;
     transition: all 0.3s ease-out;
 
-    &:hover {
+    &:hover:not([disabled]) {
       background-color: $color-white;
       color: $color-orange;
+    }
+
+    &[disabled] {
+      background-color: $color-orange-disabled;
+      cursor: not-allowed;
     }
   }
 }

@@ -1,0 +1,46 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+
+.greeting-container {
+  width: 350px;
+  //height: 350px;
+  aspect-ratio: 1/1;
+  background-color: $color-dark-blue;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+  justify-content: space-between;
+
+  &__image-container {
+    //width: 40px;
+    //aspect-ratio: 1/1;
+    @include flex-center;
+
+    &--image {
+      @include flex-center;
+    }
+  }
+
+  &__selection {
+    @include flex-center;
+
+    p {
+      padding: 10px 10px 5px 10px;
+      color: $color-orange;
+      background-color: $color-grey;
+      border-radius: 50px;
+    }
+  }
+
+  &__title {
+    color: $color-white;
+    text-align: center;
+  }
+
+  &__text {
+    color: $color-light-grey;
+    text-align: center;
+  }
+}

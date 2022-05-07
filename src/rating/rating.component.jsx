@@ -1,12 +1,32 @@
+import { useState, useEffect } from "react";
+
 import RatingItem from "../rating-item/rating-item.component";
 
 import { ReactComponent as IconStar } from "../assets/icon-star.svg";
 
 import "./rating.styles.scss";
 
-const RATING_VALUES = [1, 2, 3, 4, 5];
+const Rating = ({ ratings, onClick }) => {
+  const [ratingValues, setRatingValues] = useState(ratings);
+  const [somethingSelected, setSomethingSelected] = useState(true);
 
-const Rating = () => {
+  const onSelectHandler = (rateNbrClicked) => {
+    setRatingValues((prevRatingValues) =>
+      prevRatingValues.map((ratingValue) => ({
+        ...ratingValue,
+        selected: ratingValue.rate === rateNbrClicked,
+      }))
+    );
+  };
+
+  useEffect(() => {
+    setSomethingSelected(() => !ratingValues.some((rv) => rv.selected));
+  }, [ratingValues]);
+
+  const onSubmitHandler = () => {
+    onClick(false, ratingValues);
+  };
+
   return (
     <div className="rating-container">
       <div className="rating-container__star-container">
@@ -22,11 +42,22 @@ const Rating = () => {
         </p>
       </div>
       <div className="rating-container__rates">
-        {RATING_VALUES.map((rate) => (
-          <RatingItem key={rate} rate={rate} active={false} />
+        {ratingValues?.map(({ rate, selected }) => (
+          <RatingItem
+            key={rate}
+            rate={rate}
+            selected={selected}
+            onClick={onSelectHandler}
+          />
         ))}
       </div>
-      <button className="rating-container__submit">Submit</button>
+      <button
+        className="rating-container__submit"
+        onClick={onSubmitHandler}
+        disabled={somethingSelected}
+      >
+        Submit
+      </button>
     </div>
   );
 };

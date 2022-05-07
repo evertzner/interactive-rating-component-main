@@ -1,33 +1,13 @@
-import { useState, useEffect } from "react";
-
 import "./rating-item.styles.scss";
 
-const RatingItem = ({ rate }) => {
-  const selection = {
-    selected: 0,
-    className: "",
-  };
-
-  /*
-  Probá tocando los numeros en la pantalla, y vas a ver que se agrega la clase 'rating-item__selected', pero
-  no se cómo hacer que se resetee la de los otros numero que no selecciono.  
-  */
-
-  const [selectedRate, setSelectedRate] = useState(selection);
-
+const RatingItem = ({ rate, selected, onClick }) => {
   const onSelectionHandler = () => {
-    setSelectedRate({ selected: rate, className: "rating-item__selected" });
+    onClick(rate);
   };
-
-  // useEffect(() => {
-
-  // }, [selectedRate.rate]);
 
   return (
     <span
-      className={`rating-item ${
-        rate === selectedRate.selected && selectedRate.className
-      }`}
+      className={`rating-item ${selected ? "rating-item__selected" : ""}`}
       onClick={onSelectionHandler}
     >
       {rate}
