@@ -2,6 +2,9 @@
 @import "../styles/mixins";
 
 .greeting-container {
+  // Los width fijos no son muy recomendables, lo que podes hacer es setear min-width.
+  // Si por alguna razon necesitas mas espacio, con width no va a poder crecer.
+  // En proyectos reales muchas veces hay multiples idiomas en los textos, y es dificil saber cuanto lugar va a tomar cada cosa.
   width: 350px;
   //height: 350px;
   aspect-ratio: 1/1;
