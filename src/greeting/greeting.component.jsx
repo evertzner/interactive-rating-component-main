@@ -2,26 +2,10 @@ import { ReactComponent as IllustrationThankYou } from "../assets/illustration-t
 
 import "./greeting.styles.scss";
 
-const Greeting = ({ ratings, onClick }) => {
-  const initialRate = [
-    {
-      rate: 0,
-      selected: false,
-    },
-  ];
+const Greeting = ({ selected, max, onClick }) => {
   const onStartAllOverHandler = () => {
-    onClick(true, initialRate);
+    onClick(true);
   };
-
-  const selectedRating = ratings.find((r) => r.selected).rate;
-
-  const maxRating = ratings.sort((a, b) => {
-    if (a.rate > b.rate) {
-      return -1;
-    } else {
-      return 1;
-    }
-  })[0].rate;
 
   return (
     <div className="greeting-container" onClick={onStartAllOverHandler}>
@@ -30,7 +14,7 @@ const Greeting = ({ ratings, onClick }) => {
       </div>
       <div className="greeting-container__selection">
         <p>
-          You selected {selectedRating} out of {maxRating}
+          You selected {selected} out of {max}
         </p>
       </div>
       <div className="greeting-container__title">

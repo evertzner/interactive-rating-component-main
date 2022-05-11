@@ -12,24 +12,26 @@ const RATING_VALUES = [
 ];
 
 const Container = () => {
-  const ratingStatus = {
-    willRate: true,
-  };
-
-  const [{ willRate }, setWillRateValue] = useState(ratingStatus);
+  const [willRate, setWillRateValue] = useState(true);
   const [ratings, setRatings] = useState(RATING_VALUES);
 
-  const onToggleHandler = (status, ratingValues) => {
-    setWillRateValue({ willRate: status });
+  const onToggleHandler = (status, ratingValues = RATING_VALUES) => {
+    setWillRateValue(status);
     setRatings(ratingValues);
   };
+
+  const maxRating = ratings[ratings.length - 1].rate;
 
   return (
     <div>
       {willRate ? (
-        <Rating ratings={RATING_VALUES} onClick={onToggleHandler} />
+        <Rating ratings={ratings} onClick={onToggleHandler} />
       ) : (
-        <Greeting ratings={ratings} onClick={onToggleHandler} />
+        <Greeting
+          onClick={onToggleHandler}
+          selected={ratings.filter((r) => r.selected)[0].rate}
+          max={maxRating}
+        />
       )}
     </div>
   );

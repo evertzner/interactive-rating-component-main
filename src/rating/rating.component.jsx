@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import RatingItem from "../rating-item/rating-item.component";
 
@@ -8,7 +8,6 @@ import "./rating.styles.scss";
 
 const Rating = ({ ratings, onClick }) => {
   const [ratingValues, setRatingValues] = useState(ratings);
-  const [somethingSelected, setSomethingSelected] = useState(true);
 
   const onSelectHandler = (rateNbrClicked) => {
     setRatingValues((prevRatingValues) =>
@@ -18,10 +17,6 @@ const Rating = ({ ratings, onClick }) => {
       }))
     );
   };
-
-  useEffect(() => {
-    setSomethingSelected(() => !ratingValues.some((rv) => rv.selected));
-  }, [ratingValues]);
 
   const onSubmitHandler = () => {
     onClick(false, ratingValues);
@@ -54,7 +49,7 @@ const Rating = ({ ratings, onClick }) => {
       <button
         className="rating-container__submit"
         onClick={onSubmitHandler}
-        disabled={somethingSelected}
+        disabled={!ratingValues.some((rv) => rv.selected)}
       >
         Submit
       </button>
